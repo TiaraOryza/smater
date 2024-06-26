@@ -3,7 +3,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Alternatif</h1>
 
-    <a href="{{ url('Alternatif/tambah') }}" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
+    <a href="{{ url('Alternatif/tambah') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143)"> <i class="fa fa-plus"></i> Tambah Data </a>
 </div>
 
 @if (session('message'))
@@ -20,7 +20,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead class="bg-success text-white">
-                    <tr align="center">
+                    <tr align="center" style="background-color: rgb(250, 121, 143)">
                         <th width="5%">No</th>
                         <th>Nama Pelanggan (Member) </th>
                         <th width="15%">Aksi</th>

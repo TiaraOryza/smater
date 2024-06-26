@@ -24,9 +24,9 @@
 
 <body id="page-top">
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" >
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar" >
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('Dashboard') }}">
                 <div class="sidebar-brand-text mx-3">
@@ -39,7 +39,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ $page == 'Dashboard' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('Dashboard') }}">
-                    <i class="fas fa-fw fa-home"></i>
+                    <i class="fas fa-fw fa-home" ></i>
                     <span>Dashboard</span>
                 </a>
             </li>

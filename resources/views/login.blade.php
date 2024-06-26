@@ -20,28 +20,22 @@
 </head>
 
 <body class="bg-gradient-success">
-    {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-white shadow-lg pb-3 pt-3 font-weight-bold">
-        <div class="container" >
-            <a class="navbar-brand text-success" style="font-weight: 900" href="{{ url('/') }}">
-                 <i class="fa fa-database" aria-hidden="true"></i> SIMEMBER ROC SMARTER</a>
-        </div>
-    </nav> --}}
 
-    <div class="container" >
+    <div class="container" style="margin-left: 500pt; margin-top:150pt">
         <!-- Outer Row -->
-        <div class="row d-flex justify-content-between mt-1">
-            <div class="col-xl-6 col-lg-2 col-md-2 mt-5">
-                <div class="card bg-none o-hidden border-0 my-5 text-white" style="background: none;">
-                    <p style="font-weight: 1000; font-size:xx-large; text-align:center; margin-top: 50px; margin-left:20px">
-                        SISTEM PENDUKUNG KEPUTUSAN MEMBERSHIP DENGAN MENGGUNAKAN METODE ROC SMARTER
-                    </p>
+
+                <div class="col-xl-7 col-lg-5 col-md-2 mt-7">
+                    <div class="card bg-none o-hidden border-0 my-5 text-white" style="background: none;">
+                        <p style="font-weight: 1000; font-size:large; text-align:center">
+                            SISTEM PENDUKUNG KEPUTUSAN MEMBERSHIP DENGAN MENGGUNAKAN METODE ROC SMARTER
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-5 col-lg-4 col-md-2 mt-5"  style="margin-right: 70px">
+            <div class="col-xl-7 col-lg-5 col-md-2 mt-7" >
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                    <div class="card-body p-1">
                         <!-- Nested Row within Card Body -->
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -49,12 +43,12 @@
                                             Halo Admin, Untuk Login Masukkan ID Akun Ya! </h1>
                                     </div>
                                     {{-- tidak menggunakan notification --}}
-                                    {{-- @if(session('message'))
+                                    @if(session('message'))
                                     <div class="alert alert-danger alert-dismissable">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                         {{ session('message') }}
                                     </div>
-                                    @endif --}}
+                                    @endif
 
                                     <form class="user" action="{{ url('proses_login') }}" method="post">
                                         {{ csrf_field() }}
@@ -72,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
 
     <!-- Bootstrap core JavaScript-->

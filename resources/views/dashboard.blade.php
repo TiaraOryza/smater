@@ -15,7 +15,7 @@
     </div> --}}
     <div class="row">
 
-        <div class="col-xl-4 col-md-6 mb-4">
+        {{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -24,15 +24,15 @@
                                 <a href="{{ url('Kriteria') }}" class="text-secondary text-decoration-none">Data Kriteria</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-database    "></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-xl-4 col-md-6 mb-4">
+        {{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -41,15 +41,15 @@
                                 <a href="{{ url('SubKriteria') }}" class="text-secondary text-decoration-none">Data Sub Kriteria</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-cubes fa-2x text-gray-300"></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -58,15 +58,15 @@
                                 <a href="{{ url('Alternatif') }}" class="text-secondary text-decoration-none">Data Member</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-secondary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -75,15 +75,15 @@
                                 <a href="{{ url('Penilaian') }}" class="text-secondary text-decoration-none">Data Penilaian</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-edit fa-2x text-gray-300"></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-xl-4 col-md-6 mb-4">
+        {{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -92,15 +92,15 @@
                                 <a href="{{ url('Perhitungan') }}" class="text-secondary text-decoration-none">Perhitungan</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-calculator fa-2x text-gray-300"></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -109,16 +109,54 @@
                                 <a href="{{ url('Hasil') }}" class="text-secondary text-decoration-none">Hasil Akhir</a>
                             </div>
                         </div>
-                        {{-- <div class="col-auto">
+                        <div class="col-auto">
                             <i class="fas fa-chart-area fa-2x text-gray-300"></i>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
+        </div> --}}
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <!-- rubah clas bg-sucses jadi bg-pink -->
+                <thead class="bg-success text-white">
+                    <tr align="center">
+                        <th width="5%">No</th>
+                        <th>Nama Member </th>
+                        <th>Rangking </th>
+                        <th>Jumlah Poin</th>
+                        <th>Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $no = 1;
+                    @endphp
+                    {{-- @foreach --}}
+                        <tr align="center">
+                            <td>1</td>
+                            <td>Puja Shindu</td>
+                            <td>1</td>
+                            <td>1000</td>
+                            <td>Gold</td>
+                        </tr>
+                        @php
+                            $no++;
+                        @endphp
+                    {{-- @endforeach --}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 @endif
+
+
 
 @if(session('log.id_user_level') == '2')
 <div class="mb-4">

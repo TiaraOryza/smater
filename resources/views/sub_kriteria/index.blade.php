@@ -6,7 +6,7 @@
     <?php
 	$jml_sb = count($subkriteria);
 	if ($jml_sb > 0){ ?>
-	<a href="{{ url('SubKriteria/generate') }}" class="btn btn-primary" style="background-color: rgb(45, 122, 177)">
+	<a href="{{ url('SubKriteria/generate') }}" class="btn btn-primary">
         <i class="fa fa-calculator"></i> Hitung Bobot </a>
 	<?php } ?>
 </div>

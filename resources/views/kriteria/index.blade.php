@@ -3,8 +3,8 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-database"></i> Daftar Data Kriteria Member</h1>
     <div>
-        <a href="{{ url('Kriteria/tambah') }}" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
-        <a href="{{ url('Kriteria/generate') }}" class="btn btn-primary" style="background-color: rgb(45, 122, 177)"><i class="fa fa-calculator"></i> Hitung Bobot </a>
+        <a href="{{ url('Kriteria/tambah') }}" class="btn btn-success" > <i class="fa fa-plus"></i> Tambah Data </a>
+        <a href="{{ url('Kriteria/generate') }}" class="btn btn-primary"><i class="fa fa-calculator"></i> Hitung Bobot </a>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <!-- rubah clas bg-sucses jadi bg-pink -->
-                <thead class="bg-pink text-white">
+                <thead class="bg-success text-white">
                     <tr align="center">
                         <th width="5%">No</th>
                         <th>Kode Kriteria </th>
@@ -71,3 +71,8 @@
 </div>
 
 @include('layouts.footer_admin')
+
+
+
+
+
