@@ -33,9 +33,22 @@
                     @endphp
                     @foreach ($hasil as $keys)
                     @php
-                        $alt = $keys->nilai <= 0.5 ? 5 : 10; // Mengubah logika penambahan poin di blade
+                    // Mengubah logika penambahan poin di blade
+                    $alt = $keys->nilai <= 0.5 ? 5 : 10;
 
-                        $poinSekarang = $keys->poin; // Mengambil nilai poin sekarang dari database
+                    // Mengambil nilai poin sekarang dari database
+                    $poinSekarang = $keys->poin;
+
+                    // Menentukan level berdasarkan poin sekarang
+                    if ($poinSekarang > 100) {
+                        $level = 'Gold';
+                    } elseif ($poinSekarang > 80) {
+                        $level = 'Silver';
+                    } elseif ($poinSekarang > 40) {
+                        $level = 'Bronze';
+                    } else {
+                        $level = 'No Level';
+                    }
                     @endphp
                     <tr align="center">
                         <td align="left">{{ $keys->nama }}</td>
@@ -43,9 +56,9 @@
                         <td>{{ $no }}</td>
                         <td>{{ $alt }}</td>
                         <td>{{ $poinSekarang}}</td>
-                        <td>{{ $no }}</td>
+                        <td>{{ $level }}</td>
                     </tr>
-                    @php
+                    @php63
                         $no++;
                     @endphp
                     @endforeach
