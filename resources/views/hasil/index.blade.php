@@ -2,8 +2,10 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-chart-area"></i> Data Hasil Akhir</h1>
-	
+    <div>
     <a href="{{ url('Laporan') }}" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Data </a>
+    <a href="{{ url('Hasil/generate') }}" class="btn btn-primary"><i class="fa fa-calculator"></i> Hitung Poin </a>
+    </div>
 </div>
 
 <div class="card shadow mb-4">
@@ -20,6 +22,9 @@
                         <th>Nama Alternatif</th>
                         <th>Nilai</th>
                         <th width="15%">Ranking</th>
+                        <th width="15%">Tambahan Poin</th>
+                        <th width="15%">Poin Sekarang</th>
+                        <th width="15%">Level</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +32,17 @@
                         $no = 1;
                     @endphp
                     @foreach ($hasil as $keys)
+                    @php
+                        $alt = $keys->nilai <= 0.5 ? 5 : 10; // Mengubah logika penambahan poin di blade
+
+                        $poinSekarang = $keys->poin; // Mengambil nilai poin sekarang dari database
+                    @endphp
                     <tr align="center">
                         <td align="left">{{ $keys->nama }}</td>
                         <td>{{ $keys->nilai }}</td>
+                        <td>{{ $no }}</td>
+                        <td>{{ $alt }}</td>
+                        <td>{{ $poinSekarang}}</td>
                         <td>{{ $no }}</td>
                     </tr>
                     @php

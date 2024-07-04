@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlternatifModel;
+use App\Models\HasilModel;
+use App\Models\PerhitunganModel;
+
+// use App\Models\HasilModel;
 
 class AlternatifController extends Controller
 {
     public function index()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -21,14 +25,14 @@ class AlternatifController extends Controller
         }
 
         $data['page'] = "Alternatif";
-        $data['list'] = AlternatifModel::all();
+        $data['list'] = AlternatifModel::get_poin();
         return view('alternatif.index', $data);
     }
 
     public function tambah()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -45,7 +49,7 @@ class AlternatifController extends Controller
     public function simpan(Request $request)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -65,19 +69,19 @@ class AlternatifController extends Controller
 
         $result = AlternatifModel::create($data);
 
-        if ($result) {
-            $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-            return redirect('Alternatif');
-        } else {
-            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-            return redirect('Alternatif/tambah');
-        }
+        // if ($result) {
+        //     $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+        //     return redirect('Alternatif');
+        // } else {
+        //     $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+        //     return redirect('Alternatif/tambah');
+        // }
     }
 
     public function edit($id_alternatif)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -95,7 +99,7 @@ class AlternatifController extends Controller
     public function update(Request $request, $id_alternatif)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -116,14 +120,14 @@ class AlternatifController extends Controller
         $alternatif = AlternatifModel::findOrFail($id_alternatif);
         $alternatif->update($data);
 
-        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
+        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect('Alternatif');
     }
 
     public function destroy(Request $request, $id_alternatif)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -132,9 +136,9 @@ class AlternatifController extends Controller
             </script>
             <?php
         }
-        
+
         AlternatifModel::findOrFail($id_alternatif)->delete();
-        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect('Alternatif');
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PerhitunganModel;
+use App\Models\HasilModel;
 
 class HasilController extends Controller
 {
@@ -18,5 +19,20 @@ class HasilController extends Controller
     {
         $data['hasil'] = PerhitunganModel::get_hasil();
         return view('hasil.laporan', $data);
+    }
+
+    //untuk hitung poin
+    public function generate(Request $request)
+    {
+        //sementara pakai all dulu 
+        $nilai = HasilModel::all();
+
+        foreach ($nilai as $x) {
+            $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
+            $x->poin += $poinTambahan;
+
+            $x->save();
+        }
+        return redirect()->route('Hasil');
     }
 }

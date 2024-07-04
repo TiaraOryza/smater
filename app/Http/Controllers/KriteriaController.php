@@ -10,7 +10,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -19,7 +19,7 @@ class KriteriaController extends Controller
             </script>
             <?php
         }
-        
+
         $data['page'] = "Kriteria";
         $data['list'] = KriteriaModel::all();
         return view('kriteria.index', $data);
@@ -28,7 +28,7 @@ class KriteriaController extends Controller
     public function tambah()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -59,18 +59,18 @@ class KriteriaController extends Controller
             $data = [
                 'bobot' => $bobot,
             ];
-    
+
             $krt = KriteriaModel::findOrFail($id_kriteria);
             $krt->update($data);
         }
-        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
+        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
         return redirect()->route('Kriteria');
     }
 
     public function simpan(Request $request)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -94,19 +94,19 @@ class KriteriaController extends Controller
 
         $result = KriteriaModel::create($data);
 
-        if ($result) {
-            $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-            return redirect()->route('Kriteria');
-        } else {
-            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-            return redirect()->route('Kriteria/tambah');
-        }
+        // if ($result) {
+        //     $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+        //     return redirect()->route('Kriteria');
+        // } else {
+        //     $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+        //     return redirect()->route('Kriteria/tambah');
+        // }
     }
 
     public function edit($id_kriteria)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -124,7 +124,7 @@ class KriteriaController extends Controller
     public function update(Request $request, $id_kriteria)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -149,14 +149,14 @@ class KriteriaController extends Controller
         $kriteria = KriteriaModel::findOrFail($id_kriteria);
         $kriteria->update($data);
 
-        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
+        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect()->route('Kriteria');
     }
 
     public function destroy(Request $request, $id_kriteria)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -166,8 +166,8 @@ class KriteriaController extends Controller
             <?php
         }
 
-        KriteriaModel::findOrFail($id_kriteria)->delete();        
-        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+        KriteriaModel::findOrFail($id_kriteria)->delete();
+        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect()->route('Kriteria');
     }
 }

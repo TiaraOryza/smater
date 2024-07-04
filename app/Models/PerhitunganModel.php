@@ -40,4 +40,12 @@ class PerhitunganModel extends Model
             ->orderBy('nilai', 'DESC')
             ->get();
     }
+
+    public static function get_poin()
+    {
+        return DB::table('hasil')
+            ->join('alternatif', 'hasil.id_alternatif', '=', 'alternatif.id_alternatif')
+            ->orderBy('poin', 'DESC')
+            ->get();
+    }
 }

@@ -23,6 +23,7 @@
                     <tr align="center" style="background-color: rgb(250, 121, 143)">
                         <th width="5%">No</th>
                         <th>Nama Pelanggan (Member) </th>
+                        <th>Jumlah Poin</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -34,6 +35,8 @@
                         <tr align="center">
                             <td>{{ $no }}</td>
                             <td class="text-left">{{ $data->nama }}</td>
+                            {{-- ini belum di sertakan ke database  --}}
+                            <td class="text-left">{{ $data->poin }}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="{{ url('Alternatif/edit/'.$data->id_alternatif) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

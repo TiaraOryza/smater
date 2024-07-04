@@ -68,6 +68,7 @@ Route::get('/Perhitungan', [PerhitunganController::class, 'index'])->name('Perhi
 
 /* Hasil */
 Route::get('/Hasil', [HasilController::class, 'index'])->name('Hasil');
+Route::get('/Hasil/generate', [HasilController::class, 'generate'])->name('hasil.generate');
 
 /* Laporan */
 Route::get('/Laporan', [HasilController::class, 'Laporan'])->name('Laporan');
