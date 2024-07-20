@@ -63,7 +63,7 @@ class KriteriaController extends Controller
             $krt = KriteriaModel::findOrFail($id_kriteria);
             $krt->update($data);
         }
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
         return redirect()->route('Kriteria');
     }
 
@@ -94,13 +94,13 @@ class KriteriaController extends Controller
 
         $result = KriteriaModel::create($data);
 
-        // if ($result) {
-        //     $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-        //     return redirect()->route('Kriteria');
-        // } else {
-        //     $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-        //     return redirect()->route('Kriteria/tambah');
-        // }
+        if ($result) {
+            $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            return redirect()->route('Kriteria');
+        } else {
+            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+            return redirect()->route('Kriteria/tambah');
+        }
     }
 
     public function edit($id_kriteria)
@@ -149,7 +149,7 @@ class KriteriaController extends Controller
         $kriteria = KriteriaModel::findOrFail($id_kriteria);
         $kriteria->update($data);
 
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect()->route('Kriteria');
     }
 
@@ -167,7 +167,7 @@ class KriteriaController extends Controller
         }
 
         KriteriaModel::findOrFail($id_kriteria)->delete();
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect()->route('Kriteria');
     }
 }

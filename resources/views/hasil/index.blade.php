@@ -43,9 +43,11 @@
                     if ($poinSekarang > 100) {
                         $level = 'Gold';
                     } elseif ($poinSekarang > 80) {
-                        $level = 'Silver';
-                    } elseif ($poinSekarang > 40) {
                         $level = 'Bronze';
+                    } elseif ($poinSekarang > 40) {
+                        $level = 'Silver';
+                    } elseif ($poinSekarang > 20){
+                        $level = 'Platinum';
                     } else {
                         $level = 'No Level';
                     }
@@ -58,7 +60,7 @@
                         <td>{{ $poinSekarang}}</td>
                         <td>{{ $level }}</td>
                     </tr>
-                    @php63
+                    @php
                         $no++;
                     @endphp
                     @endforeach
