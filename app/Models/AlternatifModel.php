@@ -12,11 +12,11 @@ class AlternatifModel extends Model
     protected $fillable = ['nama','poin'];
     public $timestamps = false;
 
-    public static function get_poin()
-    {
-        return DB::table('alternatif')
-            ->join('hasil', 'alternatif.id_alternatif', '=', 'hasil.id_alternatif')
-            ->orderBy('poin', 'DESC')
-            ->get();
-    }
+    // public static function get_poin()
+    // {
+    //     return DB::table('alternatif')
+    //         ->join('hasil', 'alternatif.id_alternatif', '=', 'hasil.id_alternatif')
+    //         ->orderBy('poin', 'DESC')
+    //         ->get();
+    // }
 }

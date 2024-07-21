@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlternatifModel;
-use App\Models\HasilModel;
-use App\Models\PerhitunganModel;
-
-// use App\Models\HasilModel;
+use App\Exports\AlternatifExport;
+use App\Imports\AlternatifImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AlternatifController extends Controller
 {
@@ -25,7 +24,7 @@ class AlternatifController extends Controller
         }
 
         $data['page'] = "Alternatif";
-        $data['list'] = AlternatifModel::get_poin();
+        $data['list'] = AlternatifModel::all();
         return view('alternatif.index', $data);
     }
 
@@ -60,22 +59,24 @@ class AlternatifController extends Controller
         }
 
         $this->validate($request, [
-            'nama' => 'required'
+            'nama' => 'required',
+            // 'poin'  => 'required'
         ]);
 
         $data = [
-            'nama' => $request->nama
+            'nama' => $request->nama,
+            // 'poin' => $request->poin
         ];
 
         $result = AlternatifModel::create($data);
 
-        // if ($result) {
-        //     $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-        //     return redirect('Alternatif');
-        // } else {
-        //     $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-        //     return redirect('Alternatif/tambah');
-        // }
+        if ($result) {
+            $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            return redirect()->route('Alternatif');
+        } else {
+            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+            return redirect()->route('Alternatif/tambah');
+        }
     }
 
     public function edit($id_alternatif)
@@ -120,7 +121,6 @@ class AlternatifController extends Controller
         $alternatif = AlternatifModel::findOrFail($id_alternatif);
         $alternatif->update($data);
 
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect('Alternatif');
     }
 
@@ -138,8 +138,33 @@ class AlternatifController extends Controller
         }
 
         AlternatifModel::findOrFail($id_alternatif)->delete();
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect('Alternatif');
     }
 
+    public function export()
+    {
+        return Excel::download(new AlternatifExport, 'alternatif.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $id_user_level = session('log.id_user_level');
+
+        if ($id_user_level != 1) {
+            ?>
+            <script>
+                window.location='<?php echo url("Dashboard"); ?>'
+                alert('Anda tidak berhak mengakses halaman ini!');
+            </script>
+            <?php
+        }
+
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        Excel::import(new AlternatifImport, $request->file('file'));
+
+        return back()->with('message', 'Data berhasil diimport');
+    }
 }

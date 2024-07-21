@@ -85,3 +85,8 @@ Route::get('/User/detail/{id_user}', [UserController::class, 'detail'])->name('u
 /* Profile */
 Route::get('/Profile', [ProfileController::class, 'index'])->name('Profile');
 Route::post('/Profile/update/{id_user}', [ProfileController::class, 'update'])->name('profile.update');
+
+
+/* import eksport */
+Route::get('alternatif/export', [AlternatifController::class, 'export'])->name('alternatif.export');
+Route::post('alternatif/import', [AlternatifController::class, 'import'])->name('alternatif.import');
