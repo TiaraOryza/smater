@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -20,17 +19,16 @@ class PerhitunganModel extends Model
             ->first();
     }
 
-    // public static function data_deskripsi($id_alternatif, $id_kriteria)
-    // {
-    //     return self::join('sub_kriteria', 'penilaian.nilai', '=', 'sub_kriteria.id_sub_kriteria')
-    //         ->where('penilaian.id_alternatif', $id_alternatif)
-    //         ->where('penilaian.id_kriteria', $id_kriteria)
-    //         ->first();
-    // }
     public static function hapus_hasil()
     {
-        DB::table('hasil')->truncate();
-        return true;
+        // Nonaktifkan foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Hapus semua data di tabel hasil
+        DB::table('hasil')->delete();
+
+        // Aktifkan kembali foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     public static function get_hasil()
