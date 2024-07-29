@@ -235,6 +235,7 @@ foreach ($alternatifs as $alternatif) {
                     DB::table('hasil')->insert([
                         'id_alternatif' => $id_alternatif,
                         'nilai' => $total_nilai[$id_alternatif],
+                        // 'tambahan_poin' => 0,
                     ]);
                     ?>
                     @endforeach

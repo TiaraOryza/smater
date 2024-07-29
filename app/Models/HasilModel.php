@@ -9,7 +9,7 @@ class HasilModel extends Model
 {
     protected $table = 'hasil';
     protected $primaryKey = 'id_hasil';
-    protected $fillable = ['id_alternatif', 'nilai', 'poin_smt'];
+    protected $fillable = ['id_alternatif', 'nilai', 'tambahan_poin','poin_smt'];
     public $timestamps = false;
 
     public static function get_nilai()

@@ -191,9 +191,9 @@ class KriteriaController extends Controller
         try {
             Excel::import(new KriteriaImport, $request->file('file'));
 
-            return redirect()->route('Kriteria')->with('message', '<div class="alert alert-success" role="alert">Data berhasil diimport!</div>');
+            return redirect()->route('Kriteria')->with('message', 'Data berhasil diimport');
         } catch (\Exception $e) {
-            return redirect()->route('Kriteria')->with('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan: ' . $e->getMessage() . '</div>');
+            return redirect()->route('Kriteria')->with('message', 'Terjadi kesalahan: ' . $e->getMessage() . '</div>');
         }
     }
 }

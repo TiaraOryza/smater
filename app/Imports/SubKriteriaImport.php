@@ -21,7 +21,7 @@ class SubKriteriaImport implements ToModel, WithHeadingRow
             'id_kriteria' => $this->id_kriteria,
             'deskripsi' => $row['nama_sub_kriteria'],
             'prioritas' => $row['tingkat_prioritas'],
-            'nilai' => $row['nilai'],
+            // 'nilai' => $row['nilai'],
         ]);
     }
 }

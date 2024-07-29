@@ -17,6 +17,7 @@ class SimpanHasil extends Model
         'tanggal',
         'id_alternatif',
         'nilai',
+        'tambahan_poin',
         'poin_smt',
         'level',
     ];

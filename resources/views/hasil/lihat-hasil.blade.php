@@ -16,7 +16,8 @@
                     <tr align="center">
                         <th>Nama Alternatif</th>
                         <th>Nilai</th>
-                        <th>Poin</th>
+                        <th>Tambah Poin</th>
+                        <th>Poin Akhir</th>
                         <th>Level</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                     <tr align="center">
                         <td>{{ $data->id_alternatif }}</td>
                         <td>{{ $data->nilai }}</td>
+                        <td>{{ $data->tambahan_poin }}</td>
                         <td>{{ $data->poin_smt }}</td>
                         <td>{{ $data->level }}</td>
                     </tr>

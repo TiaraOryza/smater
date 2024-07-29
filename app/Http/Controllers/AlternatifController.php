@@ -60,11 +60,15 @@ class AlternatifController extends Controller
 
         $this->validate($request, [
             'nama' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required'
             // 'poin'  => 'required'
         ]);
 
         $data = [
             'nama' => $request->nama,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat
             // 'poin' => $request->poin
         ];
 
@@ -111,11 +115,15 @@ class AlternatifController extends Controller
         }
 
         $this->validate($request, [
-            'nama' => 'required'
+            'nama' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required'
         ]);
 
         $data = [
-            'nama' => $request->nama
+            'nama' => $request->nama,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat
         ];
 
         $alternatif = AlternatifModel::findOrFail($id_alternatif);
@@ -124,7 +132,7 @@ class AlternatifController extends Controller
         return redirect('Alternatif');
     }
 
-    public function destroy(Request $request, $id_alternatif)
+        public function destroy(Request $request, $id_alternatif)
     {
         $id_user_level = session('log.id_user_level');
 

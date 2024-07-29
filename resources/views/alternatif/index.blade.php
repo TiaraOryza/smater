@@ -29,6 +29,8 @@
                     <tr align="center" style="background-color: rgb(250, 121, 143)">
                         <th width="5%">No</th>
                         <th>Nama Pelanggan (Member)</th>
+                        <th>No Telepon</th>
+                        <th>Alamat</th>
                         <th>Jumlah Poin</th>
                         <th width="15%">Aksi</th>
                     </tr>
@@ -41,6 +43,8 @@
                         <tr align="center">
                             <td>{{ $no }}</td>
                             <td class="text-left">{{ $data->nama }}</td>
+                            <td class="text-left">{{ $data->telepon }}</td>
+                            <td class="text-left">{{ $data->alamat }}</td>
                             <td class="text-left">{{ $data->poin }}</td>
                             <td>
                                 <div class="btn-group" role="group">

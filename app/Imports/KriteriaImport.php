@@ -17,10 +17,11 @@ class KriteriaImport implements ToModel, WithHeadingRow
         }
 
         return new KriteriaModel([
+            'id_kriteria' => $row['id_kriteria'],
             'keterangan' => $row['keterangan'],
             'kode_kriteria' => $row['kode_kriteria'],
             'prioritas' => $row['prioritas'],
-            'bobot' => $row['bobot'],
+            // 'bobot' => $row['bobot'],
         ]);
     }
 }

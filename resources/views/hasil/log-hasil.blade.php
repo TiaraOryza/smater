@@ -23,6 +23,7 @@
                     <tr align="center">
                         <td>{{ $hasil->tanggal }}</td>
                         <td>
+                            <a href="{{ url('Hasil/generate') }}" class="btn btn-primary"> Update Poin </a>
                             <form action="{{ route('log-hasil.hapus', $hasil->tanggal) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

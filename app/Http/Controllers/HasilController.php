@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlternatifModel;
 use Illuminate\Http\Request;
 use App\Models\PerhitunganModel;
 use App\Models\HasilModel;
@@ -23,17 +24,50 @@ class HasilController extends Controller
         return view('hasil.laporan', $data);
     }
 
+    // public function generate(Request $request)
+    // {
+    //     $nilai = HasilModel::all();
+    //     $poin_awal = AlternatifModel::all();
+
+    //     foreach ($nilai as $x) {
+    //         $x->tambahan_poin = $x->nilai <= 0.5 ? 5 : 10;
+    //         $x->poin_smt = $poin_awal->poin + $x->tambahan_poin ;
+
+    //         $id_hasil = $x->id_hasil;
+
+    //         $data = [
+    //             'poin_smt' => $x->poin_smt,
+    //         ];
+
+    //         $hsl = HasilModel::findOrFail($id_hasil);
+    //         $hsl->update($data);
+    //     }
+    //     return redirect()->route('Hasil');
+    // }
+
+    // UPDATE POIN
     public function generate(Request $request)
     {
-        $nilai = HasilModel::all();
+        // $hasilData = SimpanHasil::all();
 
-        foreach ($nilai as $x) {
-            $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
-            $x->poin += $poinTambahan;
+        // foreach ($hasilData as $data) {
+        //     AlternatifModel::all()
+        //         ->where('id_alternatif', $data->id_alternatif)
+        //         ->update(['poin' => $data->poin_smt]);
+        // }
 
-            $x->save();
+        // return redirect()->route('log-hasil');
+
+        $hasilData = SimpanHasil::all();
+
+        foreach ($hasilData as $data) {
+            $alternatif = AlternatifModel::where('id_alternatif', $data->id_alternatif)->first();
+            if ($alternatif) {
+                $alternatif->update(['poin' => $data->poin_smt]);
+            }
         }
-        return redirect()->route('Hasil');
+
+        return redirect()->route('log-hasil');
     }
 
     public function simpan(Request $request)
@@ -47,7 +81,8 @@ class HasilController extends Controller
                 'tanggal' => $tanggal,
                 'id_alternatif' => $data['id_alternatif'],
                 'nilai' => $data['nilai'],
-                'poin_smt' => $data['tambahan_poin'], // Sesuaikan dengan poin_smt atau poin_sekarang
+                'tambahan_poin' => $data['tambahan_poin'],
+                'poin_smt' => $data['poin_smt'], // Sesuaikan dengan poin_smt atau poin_sekarang
                 'level' => $data['level'],
             ]);
         }
