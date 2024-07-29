@@ -107,7 +107,7 @@ class HasilController extends Controller
     public function lihatHasil($tanggal)
     {
         $data['page'] = "Lihat Hasil";
-        $data['hasil'] = SimpanHasil::where('tanggal', $tanggal)->get();
+        $data['hasil'] = SimpanHasil::get_nilai($tanggal);
         return view('hasil.lihat-hasil', $data);
     }
 }

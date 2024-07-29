@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SimpanHasil extends Model
 {
@@ -23,4 +24,13 @@ class SimpanHasil extends Model
     ];
 
     public $timestamps = false;
+
+    public static function get_nilai($tanggal)
+    {
+        return DB::table('simpan_hasil')
+            ->join('alternatif', 'simpan_hasil.id_alternatif', '=', 'alternatif.id_alternatif')
+            ->orderBy('nilai', 'DESC')
+            ->where('tanggal', $tanggal)
+            ->get();
+    }
 }

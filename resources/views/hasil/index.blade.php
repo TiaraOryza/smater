@@ -71,7 +71,7 @@
                             <td>{{ $level }}</td>
                         </tr>
                         <input type="hidden" name="hasil[{{ $keys->id_hasil }}][id_hasil]" value="{{ $keys->id_hasil }}">
-                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][id_alternatif]" value="{{ $keys->nama }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][id_alternatif]" value="{{ $keys->id_alternatif }}">
                         <input type="hidden" name="hasil[{{ $keys->id_hasil }}][nilai]" value="{{ $keys->nilai }}">
                         <input type="hidden" name="hasil[{{ $keys->id_hasil }}][tambahan_poin]" value="{{ $poinTambahan }}">
                         <input type="hidden" name="hasil[{{ $keys->id_hasil }}][poin_smt]" value="{{ $poinSekarang }}">

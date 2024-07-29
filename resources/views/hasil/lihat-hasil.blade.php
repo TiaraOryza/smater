@@ -24,7 +24,7 @@
                 <tbody>
                     @foreach ($hasil as $data)
                     <tr align="center">
-                        <td>{{ $data->id_alternatif }}</td>
+                        <td>{{ $data->nama }}</td>
                         <td>{{ $data->nilai }}</td>
                         <td>{{ $data->tambahan_poin }}</td>
                         <td>{{ $data->poin_smt }}</td>
