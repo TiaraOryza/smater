@@ -18,48 +18,60 @@ class HasilController extends Controller
 
     public function Laporan()
     {
+        $data['page'] = "Laporan";
         $data['hasil'] = PerhitunganModel::get_hasil();
         return view('hasil.laporan', $data);
     }
 
-    // untuk hitung poin
     public function generate(Request $request)
     {
-        // sementara pakai all dulu
         $nilai = HasilModel::all();
 
         foreach ($nilai as $x) {
             $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
             $x->poin += $poinTambahan;
-
             $x->save();
         }
         return redirect()->route('Hasil');
     }
 
-    // method untuk menyimpan hasil
     public function simpan(Request $request)
     {
-        // Validasi input tanggal
-        $request->validate([
-            'tanggal' => 'required|date',
-        ]);
-
-        // Ambil data hasil dari request
+        $tanggal = $request->input('tanggal');
         $hasilData = $request->input('hasil');
 
-        // Looping dan simpan data ke database
         foreach ($hasilData as $data) {
             SimpanHasil::create([
-                'id_hasil' => 1, // Sesuaikan dengan id hasil yang relevan jika ada
-                'id_alternatif' => 1, // Sesuaikan dengan id alternatif yang relevan jika ada
-                'tanggal' => $request->input('tanggal'),
+                'id_hasil' => $data['id_hasil'],
+                'tanggal' => $tanggal,
+                'id_alternatif' => $data['id_alternatif'],
                 'nilai' => $data['nilai'],
-                'poin_smt' => $data['tambahan_poin'], // Sesuaikan dengan poin_smt atau poin_sekarang
+                'poin_smt' => $data['tambahan_poin'],
                 'level' => $data['level'],
             ]);
         }
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('log-hasil');
+    }
+
+
+    public function logHasil()
+    {
+        $data['page'] = "Log Hasil";
+        $data['logHasil'] = SimpanHasil::select('tanggal')->distinct()->get();
+        return view('hasil.log-hasil', $data);
+    }
+
+    public function hapusLogHasil($tanggal)
+    {
+        SimpanHasil::where('tanggal', $tanggal)->delete();
+        return redirect()->route('log-hasil')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function lihatHasil($tanggal)
+    {
+        $data['page'] = "Lihat Hasil";
+        $data['hasil'] = SimpanHasil::where('tanggal', $tanggal)->get();
+        return view('hasil.lihat-hasil', $data);
     }
 }
