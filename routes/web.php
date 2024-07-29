@@ -108,3 +108,7 @@ Route::get('/penilaian/export', [PenilaianController::class, 'export'])->name('p
 Route::get('Perhitungan/export', [PerhitunganController::class, 'export'])->name('perhitungan.export');
 
 Route::post('Hasil/simpan', [HasilController::class, 'simpan'])->name('hasil.simpan');
+Route::get('log-hasil', [HasilController::class, 'logHasil'])->name('log-hasil');
+Route::delete('log-hasil/{id}', [HasilController::class, 'hapusHasil'])->name('log-hasil.hapus');
+Route::get('hasil/lihat/{id}', [HasilController::class, 'lihatHasil'])->name('hasil.lihat');
+Route::delete('/log-hasil/{tanggal}', [HasilController::class, 'hapusLogHasil'])->name('log-hasil.hapus');
