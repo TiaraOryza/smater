@@ -5,6 +5,7 @@
     <div>
         <a href="{{ url('Laporan') }}" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Data </a>
         <a href="{{ url('Hasil/generate') }}" class="btn btn-primary"><i class="fa fa-calculator"></i> Hitung Poin </a>
+        <a href="{{ route('log-hasil') }}" class="btn btn-info"><i class="fa fa-book"></i> Lihat Log Hasil</a>
     </div>
 </div>
 
@@ -14,12 +15,13 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ url('Hasil/simpan') }}" method="POST">
+        <form action="{{ route('hasil.simpan') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="tanggal">Tanggal:</label>
-                <input type="date" id="tanggal" name="tanggal" class="form-control" required>
+                <label for="tanggal">Tanggal</label>
+                <input type="date" name="tanggal" class="form-control" required>
             </div>
+            <button type="submit" class="btn btn-success mb-3">Simpan Hasil</button>
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead class="bg-success text-white">
@@ -38,8 +40,8 @@
                         @endphp
                         @foreach ($hasil as $keys)
                         @php
-                            // Mengubah logika penambahan poin di blade
-                            $alt = $keys->nilai <= 0.5 ? 5 : 10;
+                        $alt = $keys->nilai <= 0.5 ? 5 : 10;
+                        $poinSekarang = $keys->poin;
 
                             // Mengambil nilai poin sekarang dari database
                             $poinSekarang = $keys->poin_smt;
@@ -62,15 +64,15 @@
                             <td>{{ $keys->nilai }}</td>
                             <td>{{ $no }}</td>
                             <td>{{ $alt }}</td>
-                            <td>{{ $poinSekarang}}</td>
+                            <td>{{ $poinSekarang }}</td>
                             <td>{{ $level }}</td>
-                            <input type="hidden" name="hasil[{{ $no }}][nama_alternatif]" value="{{ $keys->nama }}">
-                            <input type="hidden" name="hasil[{{ $no }}][nilai]" value="{{ $keys->nilai }}">
-                            <input type="hidden" name="hasil[{{ $no }}][ranking]" value="{{ $no }}">
-                            <input type="hidden" name="hasil[{{ $no }}][tambahan_poin]" value="{{ $alt }}">
-                            <input type="hidden" name="hasil[{{ $no }}][poin_sekarang]" value="{{ $poinSekarang }}">
-                            <input type="hidden" name="hasil[{{ $no }}][level]" value="{{ $level }}">
                         </tr>
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][id_hasil]" value="{{ $keys->id_hasil }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][id_alternatif]" value="{{ $keys->nama }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][nilai]" value="{{ $keys->nilai }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][tambahan_poin]" value="{{ $alt }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][poin_sekarang]" value="{{ $poinSekarang }}">
+                        <input type="hidden" name="hasil[{{ $keys->id_hasil }}][level]" value="{{ $level }}">
                         @php
                             $no++;
                         @endphp
@@ -78,7 +80,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="submit" class="btn btn-success mt-3">Simpan Data</button>
+            {{-- <button type="submit" class="btn btn-success mt-3">Simpan Hasil</button> --}}
         </form>
     </div>
 </div>

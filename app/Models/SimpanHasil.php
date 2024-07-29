@@ -10,16 +10,16 @@ class SimpanHasil extends Model
     use HasFactory;
 
     protected $table = 'simpan_hasil';
-
-    // Menonaktifkan timestamps
-    public $timestamps = false;
+    protected $primaryKey = 'id_simpan';
 
     protected $fillable = [
         'id_hasil',
-        'id_alternatif',
         'tanggal',
+        'id_alternatif',
         'nilai',
         'poin_smt',
         'level',
     ];
+
+    public $timestamps = false;
 }
