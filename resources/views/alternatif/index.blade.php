@@ -3,13 +3,18 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Alternatif</h1>
 
-    <a href="{{ url('Alternatif/tambah') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143)"> <i class="fa fa-plus"></i> Tambah Data </a>
-    <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a>
-    <form action="{{ route('alternatif.import') }}" method="POST" enctype="multipart/form-data" style="display:inline;">
-        @csrf
-        <input type="file" name="file" required>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Excel</button>
-    </form>
+    <div style="display: grid; grid-template-columns: auto auto auto; gap: 19px; align-items: center;">
+        <a href="{{ url('Alternatif/tambah') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-plus"></i> Tambah Data </a>
+        <button type="button" class="btn btn-primary" id="import-button"><i class="fa fa-upload"></i> Import Excel</button>
+
+        <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a>
+
+        <form id="import-form" action="{{ route('alternatif.import') }}" method="POST" enctype="multipart/form-data" style="display: none;">
+            @csrf
+            <input type="file" name="file" id="file-input" required style="display: none;">
+            <button type="submit" style="display: none;"></button>
+        </form>
+    </div>
 </div>
 
 @if (session('message'))
@@ -54,5 +59,14 @@
     </div>
 </div>
 
-
 @include('layouts.footer_admin')
+
+<script>
+    document.getElementById('import-button').addEventListener('click', function() {
+        document.getElementById('file-input').click(); // Trigger file input click
+    });
+
+    document.getElementById('file-input').addEventListener('change', function() {
+        document.getElementById('import-form').submit(); // Submit the form automatically after file is selected
+    });
+</script>
