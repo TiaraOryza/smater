@@ -30,7 +30,7 @@ class HasilController extends Controller
 
         foreach ($nilai as $x) {
             $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
-            $x->poin += $poinTambahan;
+            $x->poin_smt += $poinTambahan;
 
             $x->save();
         }
@@ -55,7 +55,7 @@ class HasilController extends Controller
                 'id_alternatif' => 1, // Sesuaikan dengan id alternatif yang relevan jika ada
                 'tanggal' => $request->input('tanggal'),
                 'nilai' => $data['nilai'],
-                'poin_smt' => $data['tambahan_poin'], // Sesuaikan dengan poin_smt atau poin_sekarang
+                'poin_smt' => $data['poin_sekarang'], // Sesuaikan dengan poin_smt atau poin_sekarang
                 'level' => $data['level'],
             ]);
         }

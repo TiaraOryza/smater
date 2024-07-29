@@ -42,7 +42,7 @@
                             $alt = $keys->nilai <= 0.5 ? 5 : 10;
 
                             // Mengambil nilai poin sekarang dari database
-                            $poinSekarang = $keys->poin;
+                            $poinSekarang = $keys->poin_smt;
 
                             // Menentukan level berdasarkan poin sekarang
                             if ($poinSekarang > 100) {
