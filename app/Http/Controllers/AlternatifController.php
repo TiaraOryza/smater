@@ -70,12 +70,12 @@ class AlternatifController extends Controller
 
         $result = AlternatifModel::create($data);
 
-        if ($result) {
+       if ($result) {
             $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-            return redirect()->route('Alternatif');
+            return redirect('Alternatif');
         } else {
             $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-            return redirect()->route('Alternatif/tambah');
+            return redirect('Alternatif/tambah');
         }
     }
 
