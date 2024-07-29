@@ -22,6 +22,7 @@ use App\Http\Controllers\HasilController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
+
 Route::get('/', function () {return view('login');});
 
 /* Login */
@@ -85,3 +86,25 @@ Route::get('/User/detail/{id_user}', [UserController::class, 'detail'])->name('u
 /* Profile */
 Route::get('/Profile', [ProfileController::class, 'index'])->name('Profile');
 Route::post('/Profile/update/{id_user}', [ProfileController::class, 'update'])->name('profile.update');
+
+
+/* import eksport */
+Route::get('alternatif/export', [AlternatifController::class, 'export'])->name('alternatif.export');
+Route::post('alternatif/import', [AlternatifController::class, 'import'])->name('alternatif.import');
+
+
+/* import eksport kiteria */
+Route::get('kriteria/export', [KriteriaController::class, 'export'])->name('kriteria.export');
+Route::post('kriteria/import', [KriteriaController::class, 'import'])->name('kriteria.import');
+
+/* import eksport inport Suhkiteria */
+Route::get('subkriteria/export/{id_kriteria}', [SubKriteriaController::class, 'export'])->name('subkriteria.export');
+Route::post('subkriteria/import/{id_kriteria}', [SubKriteriaController::class, 'import'])->name('subkriteria.import');
+
+
+Route::get('/penilaian/export', [PenilaianController::class, 'export'])->name('penilaian.export');
+
+// Route::get('/data-not-found', [ErrorController::class, 'dataNotFound'])->name('data.not.found');
+Route::get('Perhitungan/export', [PerhitunganController::class, 'export'])->name('perhitungan.export');
+
+Route::post('Hasil/simpan', [HasilController::class, 'simpan'])->name('hasil.simpan');

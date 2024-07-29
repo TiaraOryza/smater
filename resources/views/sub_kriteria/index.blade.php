@@ -4,27 +4,17 @@
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-database"></i> Data Sub Kriteria Member</h1>
 
     <?php
-	$jml_sb = count($subkriteria);
-	if ($jml_sb > 0){ ?>
-	<a href="{{ url('SubKriteria/generate') }}" class="btn btn-primary">
+    $jml_sb = count($subkriteria);
+    if ($jml_sb > 0){ ?>
+    <a href="{{ url('SubKriteria/generate') }}" class="btn btn-primary">
         <i class="fa fa-calculator"></i> Hitung Bobot </a>
-	<?php } ?>
+    <?php } ?>
 </div>
 
 {!! session('message') !!}
 
-{{-- <div class="alert alert-info">
-	Bila melakukan tambah, edit dan hapus data, maka silahkan melakukan <b>Generate Bobot</b> untuk mengupdate nilai bobot kriteria.
-</div> --}}
-
-@if (count($kriteria)==0)
+@if (count($kriteria) == 0)
 <div class="card shadow mb-4">
-    <!-- /.card-header -->
-    {{-- <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success" style="-webkit-text-fill-color: rgb(109, 107, 107)">
-            <i class="fa fa-table"></i> Daftar Data Sub Kriteria</h6>
-    </div> dihapus--}}
-
     <div class="card-body">
         <div class="alert alert-info">
             Data masih kosong.
@@ -35,12 +25,21 @@
 
 @foreach ($kriteria as $key)
 <div class="card shadow mb-4">
-    <!-- /.card-header -->
     <div class="card-header py-3">
         <div class="d-sm-flex align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-table"></i> {{ $key->keterangan }} ({{ $key->kode_kriteria }})</h6>
+            <div style="display: flex; align-items: center;">
+                <a href="#tambah{{ $key->id_kriteria }}" data-toggle="modal" class="btn btn-sm btn-success" style="margin-right: 10px;"> <i class="fa fa-plus"></i> Tambah Data </a>
+                <a href="{{ route('subkriteria.export', $key->id_kriteria) }}" class="btn btn-sm btn-info" style="margin-right: 10px;"><i class="fa fa-download"></i> Export Excel</a>
 
-            <a href="#tambah{{ $key->id_kriteria }}" data-toggle="modal" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
+                <button type="button" class="btn btn-sm btn-primary" id="import-button-{{ $key->id_kriteria }}" style="margin-right: 10px;"><i class="fa fa-upload"></i> Import Excel</button>
+
+                <form id="import-form-{{ $key->id_kriteria }}" action="{{ route('subkriteria.import', $key->id_kriteria) }}" method="POST" enctype="multipart/form-data" style="display: none;">
+                    @csrf
+                    <input type="file" name="file" id="file-input-{{ $key->id_kriteria }}" required>
+                    <button type="submit" style="display: none;"></button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -60,9 +59,9 @@
                             <input autocomplete="off" type="text" id="deskripsi" class="form-control" name="deskripsi" required>
                         </div>
                         <div class="form-group">
-							<label class="font-weight-bold">Rangking (Tingkat Prioritas)</label>
-							<input autocomplete="off" type="number" name="prioritas" required class="form-control"/>
-						</div>
+                            <label class="font-weight-bold">Rangking (Tingkat Prioritas)</label>
+                            <input autocomplete="off" type="number" name="prioritas" required class="form-control"/>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal"> Kembali</button>
@@ -111,7 +110,6 @@
                         </td>
                     </tr>
 
-                    <!-- Modal -->
                     <div class="modal fade" id="editsk{{ $key->id_sub_kriteria }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -151,5 +149,17 @@
     </div>
 </div>
 @endforeach
+
 @include('layouts.footer_admin')
 
+<script>
+@foreach ($kriteria as $key)
+    document.getElementById('import-button-{{ $key->id_kriteria }}').addEventListener('click', function() {
+        document.getElementById('file-input-{{ $key->id_kriteria }}').click();
+    });
+
+    document.getElementById('file-input-{{ $key->id_kriteria }}').addEventListener('change', function() {
+        document.getElementById('import-form-{{ $key->id_kriteria }}').submit();
+    });
+@endforeach
+</script>

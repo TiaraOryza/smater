@@ -6,20 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\PenilaianModel;
 use App\Models\AlternatifModel;
 use App\Models\KriteriaModel;
+use App\Exports\PenilaianExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenilaianController extends Controller
 {
     public function index()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
-            ?>
-            <script>
-                window.location='<?php echo url("Dashboard"); ?>'
-                alert('Anda tidak berhak mengakses halaman ini!');
-            </script>
-            <?php
+            return redirect('Dashboard')->with('alert', 'Anda tidak berhak mengakses halaman ini!');
         }
 
         $data['page'] = "Penilaian";
@@ -60,5 +57,10 @@ class PenilaianController extends Controller
         }
         session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect('Penilaian');
+    }
+
+    public function export()
+    {
+        return Excel::download(new PenilaianExport, 'penilaian.xlsx');
     }
 }
