@@ -2,9 +2,18 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-database"></i> Daftar Data Kriteria Member</h1>
-    <div>
-        <a href="{{ url('Kriteria/tambah') }}" class="btn btn-success" > <i class="fa fa-plus"></i> Tambah Data </a>
-        <a href="{{ url('Kriteria/generate') }}" class="btn btn-primary"><i class="fa fa-calculator"></i> Hitung Bobot </a>
+    <div style="display: flex; align-items: center;">
+        <a href="{{ url('Kriteria/tambah') }}" class="btn btn-success" style="margin-right: 10px;"> <i class="fa fa-plus"></i> Tambah Data </a>
+        <a href="{{ url('Kriteria/generate') }}" class="btn btn-primary" style="margin-right: 10px;"><i class="fa fa-calculator"></i> Hitung Bobot </a>
+        <a href="{{ route('kriteria.export') }}" class="btn btn-info" style="margin-right: 10px;"> <i class="fa fa-download"></i> Export Excel </a>
+
+        <button type="button" class="btn btn-primary" id="import-button" style="margin-right: 10px;"><i class="fa fa-upload"></i> Import Excel</button>
+
+        <form id="import-form" action="{{ route('kriteria.import') }}" method="POST" enctype="multipart/form-data" style="display: none; margin-left: 10px;">
+            @csrf
+            <input type="file" name="file" id="file-input" required style="display: none;">
+            <button type="submit" style="display: none;"></button>
+        </form>
     </div>
 </div>
 
@@ -12,25 +21,15 @@
     {!! session('message') !!}
 @endif
 
-{{-- <div class="alert alert-info">
-	Bila melakukan tambah, edit dan hapus data, maka silahkan melakukan <b>Generate Bobot</b> untuk mengupdate nilai bobot kriteria.
-</div> --}}
-
 <div class="card shadow mb-4">
-    <!-- /.card-header -->
-    {{-- <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success" style="-webkit-text-fill-color: rgb(109, 107, 107)"> Daftar Data Kriteria</h6>
-    </div> dihapus--}}
-
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <!-- rubah clas bg-sucses jadi bg-pink -->
                 <thead class="bg-success text-white">
                     <tr align="center">
                         <th width="5%">No</th>
-                        <th>Kode Kriteria </th>
-                        <th>Nama Kriteria </th>
+                        <th>Kode Kriteria</th>
+                        <th>Nama Kriteria</th>
                         <th>Bobot Kriteria</th>
                         <th>Rangking Kriteria</th>
                         <th width="15%">Aksi</th>
@@ -72,7 +71,12 @@
 
 @include('layouts.footer_admin')
 
+<script>
+    document.getElementById('import-button').addEventListener('click', function() {
+        document.getElementById('file-input').click(); // Trigger file input click
+    });
 
-
-
-
+    document.getElementById('file-input').addEventListener('change', function() {
+        document.getElementById('import-form').submit(); // Submit the form automatically after file is selected
+    });
+</script>
