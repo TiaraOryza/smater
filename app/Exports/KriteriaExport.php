@@ -22,4 +22,4 @@ class KriteriaExport implements FromCollection, WithHeadings
             'Bobot'
         ];
     }
-}
+} 
