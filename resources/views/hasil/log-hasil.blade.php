@@ -23,13 +23,19 @@
                     <tr align="center">
                         <td>{{ $hasil->tanggal }}</td>
                         <td>
-                            <a href="{{ url('Hasil/generate') }}" class="btn btn-primary"> Update Poin </a>
+                            <a href="{{ url('Hasil/generate') }}" class="btn btn-primary">
+                                <i class="fa fa-calculator"></i> Update Poin
+                            </a>
                             <form action="{{ route('log-hasil.hapus', $hasil->tanggal) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </button>
                             </form>
-                            <a href="{{ route('hasil.lihat', $hasil->tanggal) }}" class="btn btn-info">Lihat</a>
+                            <a href="{{ route('hasil.lihat', $hasil->tanggal) }}" class="btn btn-info">
+                                <i class="fa fa-eye"></i> Lihat
+                            </a>
                         </td>
                     </tr>
                     @endforeach
