@@ -2,7 +2,7 @@
 <?php
 \App\Models\PerhitunganModel::hapus_hasil();
 
-//Matrix Keputusan (nyoba)
+//Matrix Keputusan
 $matriks_n = array();
 foreach($alternatifs as $alternatif):
     foreach($kriterias as $kriteria):
@@ -17,7 +17,7 @@ foreach($alternatifs as $alternatif):
     endforeach;
 endforeach;
 
-//Matrix Keputusan (X)
+//Normmalisasi Keputusan (X)
 $matriks_x = array();
 foreach($alternatifs as $alternatif):
     foreach($kriterias as $kriteria):
@@ -37,7 +37,7 @@ foreach($kriterias as $kriteria){
 	$total_bobot += $kriteria->bobot;
 }
 
-//Matrix Keputusan (X)
+//nilai utility 
 $nilai_u = array();
 $total_nilai = array();
 foreach($alternatifs as $alternatif):

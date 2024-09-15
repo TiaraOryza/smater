@@ -24,12 +24,12 @@ class HasilController extends Controller
     //untuk hitung poin
     public function generate(Request $request)
     {
-        //sementara pakai all dulu 
+        //sementara pakai all dulu
         $nilai = HasilModel::all();
 
         foreach ($nilai as $x) {
             $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
-            $x->poin += $poinTambahan;
+            $x->poin += $poinTambahan; 
 
             $x->save();
         }
