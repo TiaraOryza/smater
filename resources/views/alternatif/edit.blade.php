@@ -23,6 +23,14 @@
                     <label class="font-weight-bold">Nama Alternatif</label>
                     <input autocomplete="off" type="text" name="nama" value="{{ $alternatif->nama }}" required class="form-control"/>
                 </div>
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold">Telepon</label>
+                    <input autocomplete="off" type="text" name="telepon" value="{{ $alternatif->telepon }}" required class="form-control"/>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold">Alamat</label>
+                    <input autocomplete="off" type="text" name="alamat" value="{{ $alternatif->alamat }}" required class="form-control"/>
+                </div>
             </div>
         </div>
         <div class="card-footer text-right">

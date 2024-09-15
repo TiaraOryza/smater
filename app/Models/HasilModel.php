@@ -9,16 +9,10 @@ class HasilModel extends Model
 {
     protected $table = 'hasil';
     protected $primaryKey = 'id_hasil';
-    protected $fillable = ['id_alternatif', 'nilai', 'poin'];
+    protected $fillable = ['id_alternatif', 'nilai', 'tambahan_poin','poin_smt'];
     public $timestamps = false;
 
-    public static function get_nilai()
-    {
-        return DB::table('hasil')
-            ->join('alternatif', 'hasil.id_alternatif', '=', 'alternatif.id_alternatif')
-            ->orderBy('nilai', 'DESC')
-            ->get();
-    }
+    
 
     // public static function get_poin()
     // {

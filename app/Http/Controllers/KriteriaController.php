@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KriteriaModel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KriteriaExport;
+use App\Imports\KriteriaImport;
 
 class KriteriaController extends Controller
 {
@@ -103,6 +106,8 @@ class KriteriaController extends Controller
         }
     }
 
+
+
     public function edit($id_kriteria)
     {
         $id_user_level = session('log.id_user_level');
@@ -169,5 +174,26 @@ class KriteriaController extends Controller
         KriteriaModel::findOrFail($id_kriteria)->delete();
         $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect()->route('Kriteria');
+    }
+
+    public function export()
+    {
+        $fileName = 'Kriteria_' . date('Y-m-d_His') . '.xlsx';
+        return Excel::download(new KriteriaExport, $fileName);
+    }
+
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        try {
+            Excel::import(new KriteriaImport, $request->file('file'));
+
+            return redirect()->route('Kriteria')->with('message', 'Data berhasil diimport');
+        } catch (\Exception $e) {
+            return redirect()->route('Kriteria')->with('message', 'Terjadi kesalahan: ' . $e->getMessage() . '</div>');
+        }
     }
 }
