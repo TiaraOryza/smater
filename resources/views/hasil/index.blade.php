@@ -48,36 +48,6 @@
                         //Menambahkan poin akhir
                         $poinSekarang = $poinAwal + $poinTambahan;
 
-<<<<<<< HEAD
-                    // Menentukan level berdasarkan poin sekarang
-                    if ($poinSekarang > 100) {
-                        $level = 'Gold';
-                    } elseif ($poinSekarang > 80) {
-                        $level = 'Bronze';
-                    } elseif ($poinSekarang > 40) {
-                        $level = 'Silver';
-                    } elseif ($poinSekarang > 20){
-                        $level = 'Platinum';
-                    } else {
-                        $level = 'No Level';
-                    }
-                    @endphp
-                    <tr align="center">
-                        <td align="left">{{ $keys->nama }}</td>
-                        <td>{{ $keys->nilai }}</td>
-                        <td>{{ $no }}</td>
-                        <td>{{ $alt }}</td>
-                        <td>{{ $poinSekarang}}</td>
-                        <td>{{ $level }}</td>
-                    </tr>
-                    @php
-                        $no++;
-                    @endphp
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-=======
                             // Menentukan level berdasarkan poin sekarang
                             if ($poinSekarang > 100) {
                                 $level = 'Gold';
@@ -122,7 +92,6 @@
             </div>
             {{-- <button type="submit" class="btn btn-success mt-3">Simpan Hasil</button> --}}
         </form>
->>>>>>> 849c16bbee7c31193c9c93a334e598c95a9ad1d1
     </div>
 </div>
 

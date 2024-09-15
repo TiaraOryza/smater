@@ -3,20 +3,11 @@
 <?php
 \App\Models\PerhitunganModel::hapus_hasil();
 
-<<<<<<< HEAD
 //Matrix Keputusan
 $matriks_n = array();
 foreach($alternatifs as $alternatif):
     foreach($kriterias as $kriteria):
 
-=======
-// Matrix Keputusan (nyoba)
-$matriks_n = [];
-$matriks_x = [];
-$penilaian_ada = false;
-foreach ($alternatifs as $alternatif) {
-    foreach ($kriterias as $kriteria) {
->>>>>>> 849c16bbee7c31193c9c93a334e598c95a9ad1d1
         $id_alternatif = $alternatif->id_alternatif;
         $id_kriteria = $kriteria->id_kriteria;
 
@@ -27,8 +18,7 @@ foreach ($alternatifs as $alternatif) {
         $matriks_n[$id_kriteria][$id_alternatif] = $nilai_n;
         $matriks_x[$id_kriteria][$id_alternatif] = $nilai_x;
 
-<<<<<<< HEAD
-//Normmalisasi Keputusan (X)
+ //Normmalisasi Keputusan (X)
 $matriks_x = array();
 foreach($alternatifs as $alternatif):
     foreach($kriterias as $kriteria):
@@ -48,20 +38,10 @@ foreach($kriterias as $kriteria){
 	$total_bobot += $kriteria->bobot;
 }
 
-//nilai utility 
+//nilai utility
 $nilai_u = array();
 $total_nilai = array();
 foreach($alternatifs as $alternatif):
-=======
-        if ($nilai_n != 0 || $nilai_x != 0) {
-            $penilaian_ada = true;
-        }
-    }
-}
-
-// Total Bobot
-$total_bobot = $kriterias->sum('bobot');
->>>>>>> 849c16bbee7c31193c9c93a334e598c95a9ad1d1
 
 // Matrix Keputusan (X)
 $nilai_u = [];

@@ -48,14 +48,6 @@ class HasilController extends Controller
     // UPDATE POIN
     public function generate(Request $request)
     {
-<<<<<<< HEAD
-        //sementara pakai all dulu
-        $nilai = HasilModel::all();
-
-        foreach ($nilai as $x) {
-            $poinTambahan = $x->nilai <= 0.5 ? 5 : 10;
-            $x->poin += $poinTambahan; 
-=======
         // $hasilData = SimpanHasil::all();
 
         // foreach ($hasilData as $data) {
@@ -63,7 +55,6 @@ class HasilController extends Controller
         //         ->where('id_alternatif', $data->id_alternatif)
         //         ->update(['poin' => $data->poin_smt]);
         // }
->>>>>>> 849c16bbee7c31193c9c93a334e598c95a9ad1d1
 
         // return redirect()->route('log-hasil');
 
