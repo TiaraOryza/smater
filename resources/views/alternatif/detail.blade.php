@@ -4,10 +4,10 @@
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Detail Data Member</h1>
 
     <div style="display: grid; grid-template-columns: auto auto auto; gap: 19px; align-items: center;">
-        <a href="{{ url('Alternatif/tambah') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-plus"></i> Tambah Data </a>
-        <button type="button" class="btn btn-primary" id="import-button"><i class="fa fa-upload"></i> Import Excel</button>
-
-        <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a>
+        <a href="{{ url('Alternatif/edit') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-edit"></i> Edit Data </a>
+        <a href="{{ url('Alternatif/hapus') }}" class="btn btn-danger" style="background-color: rgb(255, 9, 50);"> <i class="fa fa-trash"></i> Hapus</a>
+        {{-- <button type="button" class="btn btn-primary" id="import-button"><i class="fa fa-upload"></i> Import Excel</button>
+        <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a> --}}
 
         <form id="import-form" action="{{ route('alternatif.import') }}" method="POST" enctype="multipart/form-data" style="display: none;">
             @csrf
@@ -33,39 +33,38 @@
                         </tr>
                         <tr>
                             <th scope="row" style="width: 200px;">NAMA</th>
-                            <td>2141764014</td>
+                            <td>{{$listdet->nama}}</td>
                         </tr>
                         <tr>
                             <th scope="row">JENIS KELAMIN</th>
-                            <td>XXXXXXX</td>
+                            <td>{{$listdet->jenis_kelamin}}</td>
                         </tr>
-
+                        <tr>
+                            <th scope="row">UMUR</th>
+                            <td>{{$listdet->umur}}</td>
+                        </tr>
                         <tr>
                             <th scope="row">NO TELEPON</th>
-                            <td>Tiara Oryza Sativa, S.Tr.S.I.B.</td>
+                            <td>{{$listdet->telepon}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">EMAIL</th>
+                            <td>{{$listdet->email}}</td>
                         </tr>
                         <tr>
                             <th scope="row">ALAMAT</th>
-                            <td>Islam / Perempuan</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">XXX</th>
-                            <td>XXXXXXX</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Email</th>
-                            <td>tiaraoryza111@gmail.com</td>
+                            <td>{{$listdet->alamat}}</td>
                         </tr>
                         <tr align="center">
                             <td colspan="2" class="section-header"><b>INFORMASI KARTU</b></td>
                         </tr>
                         <tr>
                             <th scope="row">TANGGAL JOIN</th>
-                            <td>XXXXXXX</td>
+                            <td>{{$listdet->tanggal_join}}</td>
                         </tr>
                         <tr>
                             <th scope="row">MASA BERLAKU</th>
-                            <td>XXXXXXX</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th scope="row">JUMLAH POIN</th>
