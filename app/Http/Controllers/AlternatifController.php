@@ -27,6 +27,23 @@ class AlternatifController extends Controller
         $data['list'] = AlternatifModel::all();
         return view('alternatif.index', $data);
     }
+    public function detail($id_alternatif)
+    {
+        $id_user_level = session('log.id_user_level');
+
+        if ($id_user_level != 1) {
+            ?>
+            <script>
+                window.location='<?php echo url("Dashboard"); ?>'
+                alert('Anda tidak berhak mengakses halaman ini!');
+            </script>
+            <?php
+        }
+
+        $data['page'] = "Alternatif";
+        $data['listdet'] = AlternatifModel::findOrFail($id_alternatif);
+        return view('alternatif.detail', $data);
+    }
 
     public function tambah()
     {
