@@ -7,6 +7,7 @@ use App\Models\AlternatifModel;
 use App\Exports\AlternatifExport;
 use App\Imports\AlternatifImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class AlternatifController extends Controller
 {
@@ -42,6 +43,19 @@ class AlternatifController extends Controller
 
         $data['page'] = "Alternatif";
         $data['listdet'] = AlternatifModel::findOrFail($id_alternatif);
+
+        // Hitung Masa Berlaku (2 bulan setelah tanggal join)
+        $tanggalJoin = Carbon::parse($data['listdet']->tanggal_join);
+        $masaBerlaku = $tanggalJoin->copy()->addMonths(2);
+
+        // Cek apakah masa berlaku sudah habis
+        $isExpired = Carbon::now()->greaterThan($masaBerlaku);
+
+        // Tambahkan $masaBerlaku dan $isExpired ke dalam array $data
+        $data['masaBerlaku'] = $masaBerlaku;
+        $data['isExpired'] = $isExpired;
+        $data['tanggalJoin'] = $tanggalJoin;
+
         return view('alternatif.detail', $data);
     }
 
@@ -95,7 +109,7 @@ class AlternatifController extends Controller
             $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
             return redirect('Alternatif');
         } else {
-            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+            $request->session()->flash('message','<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
             return redirect('Alternatif/tambah');
         }
     }

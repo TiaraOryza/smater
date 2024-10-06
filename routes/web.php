@@ -56,7 +56,7 @@ Route::get('/Alternatif', [AlternatifController::class, 'index'])->name('Alterna
 Route::get('/Alternatif/tambah', [AlternatifController::class, 'tambah'])->name('alternatif.tambah');
 Route::get('/Alternatif/edit/{id_alternatif}', [AlternatifController::class, 'edit'])->name('alternatif.edit');
 Route::get('/Alternatif/destroy/{id_alternatif}', [AlternatifController::class, 'destroy'])->name('alternatif.destroy');
-Route::get('Alternatif/detail/{id_alternatif}', [AlternatifController::class, 'detail'])->name('alternatif.detail');
+Route::get('/Alternatif/detail/{id_alternatif}', [AlternatifController::class, 'detail'])->name('alternatif.detail');
 Route::post('/Alternatif/simpan', [AlternatifController::class, 'simpan']);
 Route::post('/Alternatif/update/{id_alternatif}', [AlternatifController::class, 'update'])->name('alternatif.update');
 

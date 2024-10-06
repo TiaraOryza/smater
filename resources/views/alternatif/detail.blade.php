@@ -60,15 +60,20 @@
                         </tr>
                         <tr>
                             <th scope="row">TANGGAL JOIN</th>
-                            <td>{{$listdet->tanggal_join}}</td>
+                            <td>{{$tanggalJoin->format('d-m-Y')}}</td>
                         </tr>
                         <tr>
                             <th scope="row">MASA BERLAKU</th>
-                            <td></td>
+                            <td>
+                                {{ $masaBerlaku->format('d-m-Y') }}
+                                @if($isExpired)
+                                    <span class="text-danger"> (Masa berlaku telah habis, silahkan perbarui kartu)</span>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">JUMLAH POIN</th>
-                            <td>Blitar, 03-03-2002</td>
+                            <td>{{$listdet->poin}}</td>
                         </tr>
 
                         <tr align="center">
