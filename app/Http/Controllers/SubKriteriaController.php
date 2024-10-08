@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SubKriteriaModel;
 use App\Models\KriteriaModel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SubKriteriaExport;
+use App\Imports\SubKriteriaImport;
 
 class SubKriteriaController extends Controller
 {
     public function index()
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -26,6 +29,7 @@ class SubKriteriaController extends Controller
         $data['subkriteria'] = SubKriteriaModel::all();
         return view('sub_kriteria.index', $data);
     }
+
 
     public function generate(Request $request)
     {
@@ -47,7 +51,7 @@ class SubKriteriaController extends Controller
                 $data = [
                     'nilai' => $nilai,
                 ];
-        
+
                 $skrt = SubKriteriaModel::findOrFail($id_sub_kriteria);
                 $skrt->update($data);
             }
@@ -59,7 +63,7 @@ class SubKriteriaController extends Controller
     public function simpan(Request $request)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -95,7 +99,7 @@ class SubKriteriaController extends Controller
     public function edit(Request $request, $id_sub_kriteria)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -127,7 +131,7 @@ class SubKriteriaController extends Controller
     public function destroy(Request $request, $id_sub_kriteria)
     {
         $id_user_level = session('log.id_user_level');
-        
+
         if ($id_user_level != 1) {
             ?>
             <script>
@@ -136,9 +140,30 @@ class SubKriteriaController extends Controller
             </script>
             <?php
         }
-        
+
         SubKriteriaModel::findOrFail($id_sub_kriteria)->delete();
         $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect('SubKriteria');
+    }
+
+    public function export($id_kriteria)
+    {
+        $kriteria = KriteriaModel::find($id_kriteria);
+        $header = ['ID Sub Kriteria', 'ID Kriteria', 'Nama Sub Kriteria', 'Tingkat Prioritas', 'Nilai'];
+
+        $fileName = $kriteria->keterangan . ' (' . $kriteria->kode_kriteria . ').xlsx';
+
+        return Excel::download(new SubKriteriaExport($id_kriteria, $header), $fileName);
+    }
+
+    public function import(Request $request, $id_kriteria)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        Excel::import(new SubKriteriaImport($id_kriteria), $request->file('file'));
+
+        return redirect()->route('SubKriteria')->with('message', '<div class="alert alert-success" role="alert">Data berhasil diimport!</div>');
     }
 }

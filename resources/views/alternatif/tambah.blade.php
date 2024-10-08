@@ -26,6 +26,14 @@
                     <label class="font-weight-bold">Nama Member</label>
                     <input autocomplete="off" type="text" name="nama" required class="form-control"/>
                 </div>
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold">Telepon</label>
+                    <input autocomplete="off" type="text" name="telepon" required class="form-control"/>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold">Alamat</label>
+                    <input autocomplete="off" type="text" name="alamat" required class="form-control"/>
+                </div>
             </div>
         </div>
         <div class="card-footer text-right">

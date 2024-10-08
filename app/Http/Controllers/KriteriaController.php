@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KriteriaModel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KriteriaExport;
+use App\Imports\KriteriaImport;
 
 class KriteriaController extends Controller
 {
@@ -63,7 +66,7 @@ class KriteriaController extends Controller
             $krt = KriteriaModel::findOrFail($id_kriteria);
             $krt->update($data);
         }
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data nilai bobot berhasil digenerate!</div>');
         return redirect()->route('Kriteria');
     }
 
@@ -94,14 +97,16 @@ class KriteriaController extends Controller
 
         $result = KriteriaModel::create($data);
 
-        // if ($result) {
-        //     $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
-        //     return redirect()->route('Kriteria');
-        // } else {
-        //     $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
-        //     return redirect()->route('Kriteria/tambah');
-        // }
+        if ($result) {
+            $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil disimpan!</div>');
+            return redirect()->route('Kriteria');
+        } else {
+            $request->session()->flash('message', '<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
+            return redirect()->route('Kriteria/tambah');
+        }
     }
+
+
 
     public function edit($id_kriteria)
     {
@@ -149,7 +154,7 @@ class KriteriaController extends Controller
         $kriteria = KriteriaModel::findOrFail($id_kriteria);
         $kriteria->update($data);
 
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil diupdate!</div>');
         return redirect()->route('Kriteria');
     }
 
@@ -167,7 +172,28 @@ class KriteriaController extends Controller
         }
 
         KriteriaModel::findOrFail($id_kriteria)->delete();
-        // $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
+        $request->session()->flash('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
         return redirect()->route('Kriteria');
+    }
+
+    public function export()
+    {
+        $fileName = 'Kriteria_' . date('Y-m-d_His') . '.xlsx';
+        return Excel::download(new KriteriaExport, $fileName);
+    }
+
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        try {
+            Excel::import(new KriteriaImport, $request->file('file'));
+
+            return redirect()->route('Kriteria')->with('message', 'Data berhasil diimport');
+        } catch (\Exception $e) {
+            return redirect()->route('Kriteria')->with('message', 'Terjadi kesalahan: ' . $e->getMessage() . '</div>');
+        }
     }
 }
