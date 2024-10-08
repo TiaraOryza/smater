@@ -2,13 +2,15 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Detail Data Member</h1>
-
     <div style="display: grid; grid-template-columns: auto auto auto; gap: 19px; align-items: center;">
-        <a href="{{ url('Alternatif/edit') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-edit"></i> Edit Data </a>
-        <a href="{{ url('Alternatif/hapus') }}" class="btn btn-danger" style="background-color: rgb(255, 9, 50);"> <i class="fa fa-trash"></i> Hapus</a>
+        {{-- <a href="{{ url('Alternatif/edit') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-edit"></i> Edit Data </a>
+        <a href="{{ url('Alternatif/hapus') }}" class="btn btn-danger" style="background-color: rgb(255, 9, 50);"> <i class="fa fa-trash"></i> Hapus</a> --}}
         {{-- <button type="button" class="btn btn-primary" id="import-button"><i class="fa fa-upload"></i> Import Excel</button>
         <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a> --}}
-
+        <a href="{{ url('Alternatif') }}" class="btn btn-secondary btn-6icon-split" style="background-color: rgb(85, 121, 176)">
+            <span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
+            <span class="text"> Kembali</span>
+        </a>
         <form id="import-form" action="{{ route('alternatif.import') }}" method="POST" enctype="multipart/form-data" style="display: none;">
             @csrf
             <input type="file" name="file" id="file-input" required style="display: none;">
@@ -38,6 +40,10 @@
                         <tr>
                             <th scope="row">JENIS KELAMIN</th>
                             <td>{{$listdet->jenis_kelamin}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">TANGGAL LAHIR</th>
+                            <td>{{$listdet->TTL}}</td>
                         </tr>
                         <tr>
                             <th scope="row">UMUR</th>
