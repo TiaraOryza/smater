@@ -169,11 +169,12 @@
         const cardElement = document.getElementById('cardMember');
 
         if (cardElement) {
-            html2canvas(cardElement).then(function(canvas) {
+            // Menggunakan scale untuk meningkatkan resolusi
+            html2canvas(cardElement, { scale: 2 }).then(function(canvas) {
                 const imageData = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.href = imageData;
-                link.download = 'ekartu_member.png';
+                link.download = 'ekartu_member_high_res.png';
 
                 // Append the link, trigger click, then remove link
                 document.body.appendChild(link);
@@ -187,5 +188,4 @@
         }
     });
 });
-
 </script>
