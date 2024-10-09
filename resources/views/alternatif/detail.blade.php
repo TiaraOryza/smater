@@ -2,11 +2,21 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Detail Data Member</h1>
-
     <div style="display: grid; grid-template-columns: auto auto auto; gap: 19px; align-items: center;">
+<<<<<<< HEAD
+        {{-- <a href="{{ url('Alternatif/edit') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-edit"></i> Edit Data </a>
+        <a href="{{ url('Alternatif/hapus') }}" class="btn btn-danger" style="background-color: rgb(255, 9, 50);"> <i class="fa fa-trash"></i> Hapus</a> --}}
+        {{-- <button type="button" class="btn btn-primary" id="import-button"><i class="fa fa-upload"></i> Import Excel</button>
+        <a href="{{ route('alternatif.export') }}" class="btn btn-info"> <i class="fa fa-download"></i> Export Excel </a> --}}
+        <a href="{{ url('Alternatif') }}" class="btn btn-secondary btn-6icon-split" style="background-color: rgb(85, 121, 176)">
+            <span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
+            <span class="text"> Kembali</span>
+        </a>
+=======
         <a href="{{ url('Alternatif/edit') }}" class="btn btn-success" style="background-color: rgb(250, 121, 143);"> <i class="fa fa-edit"></i> Edit Data </a>
         <a href="{{ url('Alternatif/hapus') }}" class="btn btn-danger" style="background-color: rgb(255, 9, 50);"> <i class="fa fa-trash"></i> Hapus</a>
 
+>>>>>>> 1c827e9bca959d72eefbf4b795914dc59cfbd415
         <form id="import-form" action="{{ route('alternatif.import') }}" method="POST" enctype="multipart/form-data" style="display: none;">
             @csrf
             <input type="file" name="file" id="file-input" required style="display: none;">
@@ -23,6 +33,53 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<<<<<<< HEAD
+                {{-- <thead class="bg-success text-white"> --}}
+
+                    <tbody>
+                        <tr align="center">
+                            <td colspan="2" class="section-header" ><B>INFORMASI PRIBADI</B></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 200px;">NAMA</th>
+                            <td>{{$listdet->nama}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">JENIS KELAMIN</th>
+                            <td>{{$listdet->jenis_kelamin}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">TANGGAL LAHIR</th>
+                            <td>{{$listdet->TTL}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">UMUR</th>
+                            <td>{{$listdet->umur}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">NO TELEPON</th>
+                            <td>{{$listdet->telepon}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">EMAIL</th>
+                            <td>{{$listdet->email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">ALAMAT</th>
+                            <td>{{$listdet->alamat}}</td>
+                        </tr>
+                        <tr align="center">
+                            <td colspan="2" class="section-header"><b>INFORMASI KARTU</b></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">TANGGAL JOIN</th>
+                            <td>{{$tanggalJoin->format('d-m-Y')}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">MASA BERLAKU</th>
+                            <td>
+                                {{ $masaBerlaku->format('d-m-Y') }}
+=======
                 <tbody>
                     <tr align="center">
                         <td colspan="2" class="section-header"><b>INFORMASI PRIBADI</b></td>
@@ -82,6 +139,7 @@
                                 <div class="info"><b>Jenis Kelamin:</b> {{$listdet->jenis_kelamin}}</div>
                                 <div class="info"><b>No Telepon:</b> {{$listdet->telepon}}</div>
                                 <div class="info"><b>Masa Berlaku:</b> {{$masaBerlaku->format('d-m-Y')}}</div>
+>>>>>>> 1c827e9bca959d72eefbf4b795914dc59cfbd415
                                 @if($isExpired)
                                     <div class="info text-danger">(Masa berlaku telah habis)</div>
                                 @endif
